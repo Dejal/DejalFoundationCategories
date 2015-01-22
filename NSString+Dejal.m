@@ -368,27 +368,34 @@
 
 /**
  Returns YES if the subString is within the receiver, otherwise NO.  [Note: can easily extend this to take options, and to take a range; see -rangeOfString:options:range:]
+ 
+ This method has been removed, as NSString has -containsString: on 10.10 and later.
 */
 
+/*
 - (BOOL)dejal_containsString:(NSString *)subString;
 {
     NSRange range = [self rangeOfString:subString];
 
     return range.location != NSNotFound;
 }
+*/
 
 /**
  Returns YES if the subString is within the receiver, otherwise NO.  The case of both strings is ignored.
  
  @author DJS 2004-12.
+ @version DJS 2015-01: This method has been removed, as NSString has -localizedCaseInsensitiveContainsString: on 10.10 and later..
 */
 
+/*
 - (BOOL)dejal_containsStringCaseInsensitive:(NSString *)subString;
 {
     NSRange range = [self rangeOfString:subString options:NSCaseInsensitiveSearch];
     
     return range.location != NSNotFound;
 }
+*/
 
 - (NSComparisonResult)dejal_caseAndSpaceInsensitiveCompare:(NSString *)otherString
 {
@@ -435,7 +442,7 @@
 
 - (BOOL)dejal_containsStringLetters:(NSString *)otherString
 {
-    return ([[self dejal_lowercasedLettersOnly] dejal_containsString:[otherString dejal_lowercasedLettersOnly]]);
+    return ([[self dejal_lowercasedLettersOnly] containsString:[otherString dejal_lowercasedLettersOnly]]);
 }
 
 /**
@@ -1337,7 +1344,7 @@
         url = [url substringToIndex:range.location];
     }
     
-    if (![url dejal_containsString:@"."] && ![scheme isEqualToString:@"file://"] && ![url dejal_containsString:@"localhost"])
+    if (![url containsString:@"."] && ![scheme isEqualToString:@"file://"] && ![url containsString:@"localhost"])
         url = [NSString stringWithFormat:@"www.%@.com", url];
     
     if (!scheme)

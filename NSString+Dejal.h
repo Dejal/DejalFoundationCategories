@@ -58,8 +58,8 @@
 
 - (BOOL)dejal_containsSomething;
 
-- (BOOL)dejal_containsString:(NSString *)subString;
-- (BOOL)dejal_containsStringCaseInsensitive:(NSString *)subString;
+//- (BOOL)dejal_containsString:(NSString *)subString;
+//- (BOOL)dejal_containsStringCaseInsensitive:(NSString *)subString;
 
 - (NSComparisonResult)dejal_caseAndSpaceInsensitiveCompare:(NSString *)otherString;
 

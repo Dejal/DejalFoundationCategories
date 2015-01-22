@@ -779,7 +779,7 @@
  @param unitsStyle The date components formatter style, e.g. NSDateComponentsFormatterUnitsStyleShort.
  @param maximumUnits The number of units to include, e.g. 1 for "5 minutes", 2 for "5 minutes, 13 seconds".
  @param keepZero If YES, the smallest unit is allowed to display zero (e.g. "3 mins, 0 secs"; if NO, it drops the zero (e.g. just "3 mins").
- @param defaultValue A string to output if the interval is in the distant past or future).
+ @param defaultValue A string to output if the interval is in the distant past or future.
  @returns A relative string representation of the receiver.
  
  @author DJS 2014-08.
@@ -801,7 +801,7 @@
  @param unitsStyle The date components formatter style, e.g. NSDateComponentsFormatterUnitsStyleShort.
  @param maximumUnits The number of units to include, e.g. 1 for "5 minutes", 2 for "5 minutes, 13 seconds".
  @param keepZero If YES, the smallest unit is allowed to display zero (e.g. "3 mins, 0 secs"; if NO, it drops the zero (e.g. just "3 mins").
- @param defaultValue A string to output if the interval is in the distant past or future).
+ @param defaultValue A string to output if the interval is in the distant past or future.
  @returns A relative string representation of the receiver.
  
  @author DJS 2014-08.
