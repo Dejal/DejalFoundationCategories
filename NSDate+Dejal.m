@@ -789,7 +789,7 @@
 
 - (NSString *)dejal_relativeStringWithStyle:(NSDateComponentsFormatterUnitsStyle)unitsStyle maximumUnits:(NSInteger)maximumUnits keepZero:(BOOL)keepZero defaultValue:(NSString *)defaultValue;
 {
-    NSTimeInterval timeInterval = abs([self timeIntervalSinceNow]);
+    NSTimeInterval timeInterval = fabs([self timeIntervalSinceNow]);
     
     return [[self class] dejal_relativeStringForTimeInterval:timeInterval style:unitsStyle maximumUnits:maximumUnits keepZero:keepZero defaultValue:defaultValue];
 }
@@ -813,7 +813,7 @@
 + (NSString *)dejal_relativeStringForTimeInterval:(NSTimeInterval)timeInterval style:(NSDateComponentsFormatterUnitsStyle)unitsStyle maximumUnits:(NSInteger)maximumUnits keepZero:(BOOL)keepZero defaultValue:(NSString *)defaultValue;
 {
     // If more than 10 years, assume distant past or future:
-    if (abs(timeInterval) > 60 * 60 * 24 * 365 * 10)
+    if (fabs(timeInterval) > 60 * 60 * 24 * 365 * 10)
     {
         return defaultValue;
     }
