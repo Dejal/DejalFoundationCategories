@@ -406,6 +406,20 @@
 }
 
 /**
+ Returns the receiver with all characters other than digits removed.  Useful to compare two strings without extraneous punctuation etc.
+ 
+ @author DJS 2008-11.
+ @version DJS 2015-11: Added missing "dejal_" prefix.
+ */
+
+- (NSString *)dejal_digitsOnly;
+{
+    NSCharacterSet *charSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    
+    return [self dejal_stringByRemovingCharactersInSet:charSet];
+}
+
+/**
  Returns the receiver with all letter characters converted to lowercase, and all other characters removed.  Useful to compare two strings without extraneous punctuation etc.
  
  @author DJS 2005-02.
@@ -686,20 +700,6 @@
     
     return wordCount;
 }
-
-/**
- Returns the receiver with all characters other than digits removed.  Useful to compare two strings without extraneous punctuation etc.
- 
- @author DJS 2008-11.
-*/
-
-- (NSString *)digitsOnly;
-{
-    NSCharacterSet *charSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-
-    return [self dejal_stringByRemovingCharactersInSet:charSet];
-}
-
 
 /**
  Given a string containing a version number, of the form "1.2.3b4", returns a dictionary with each component separated out, using the keys "Major", "Minor", "Bug", "Kind" and "Stage", respectively.  In addition, key "Version" will contain the original version string, "General" will contain the general release portion, i.e. omitting the "b4" or whatever, and "IsGeneral" is a boolean indicating if it is a general release or not.  Keys are omitted if the corresponding component of the version string is missing.

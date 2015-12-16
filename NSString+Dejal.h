@@ -63,6 +63,7 @@
 
 - (NSComparisonResult)dejal_caseAndSpaceInsensitiveCompare:(NSString *)otherString;
 
+- (NSString *)dejal_digitsOnly;
 - (NSString *)dejal_lowercasedLettersOnly;
 - (NSString *)dejal_lowercasedLettersOrDigitsOnly;
 - (BOOL)dejal_containsStringLetters:(NSString *)otherString;
