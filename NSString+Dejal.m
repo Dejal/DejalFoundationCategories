@@ -1244,11 +1244,12 @@
  An Objective-C wrapper around the Core Foundation function to convert a raw string into a URL-safe format.
  
  @author DJS 2003-07.
+ @version DJS 2016-03: Tweaked to do better encoding.
 */
 
 - (NSString *)dejal_stringByAddingPercentEscapes
 {
-    return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)self, NULL, NULL, kCFStringEncodingUTF8);
+    return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)self, NULL, (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ", kCFStringEncodingUTF8);
 }
 
 /**
