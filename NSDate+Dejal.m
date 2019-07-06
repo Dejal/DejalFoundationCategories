@@ -486,10 +486,18 @@
  @returns The aligned date.
  
  @author DJS 2014-04.
+ @version DJS 2019-07: Special case for zero minutes, to avoid a divide-by-zero error.
  */
 
 - (NSDate *)dejal_dateByAligningToMinuteIncrement:(NSInteger)minuteIncrement;
 {
+    if (minuteIncrement <= 0)
+    {
+        NSDateComponents *components = [self dejal_components:NSCalendarUnitHour];
+        
+        return [[NSCalendar currentCalendar] dateBySettingHour:components.hour minute:0 second:0 ofDate:self options:0];
+    }
+    
     NSInteger incrementSeconds = minuteIncrement * 60;
     NSInteger referenceSeconds = [self timeIntervalSinceReferenceDate];
     NSInteger remainingSeconds = referenceSeconds % incrementSeconds;
