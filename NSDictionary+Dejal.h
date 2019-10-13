@@ -3,7 +3,7 @@
 //  Dejal Open Source Categories
 //
 //  Created by David Sinclair on Sat Aug 10 2002.
-//  Copyright (c) 2002-2015 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2002-2019 Dejal Systems, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
@@ -75,6 +75,7 @@
 - (void)dejal_setInteger:(NSInteger)value forKey:(id)key;
 - (void)dejal_setFloat:(CGFloat)value forKey:(id)key;
 - (void)dejal_setTimeInterval:(NSTimeInterval)value forKey:(id)key;
+- (void)dejal_setJSONDate:(NSDate *)value forKey:(id)key removeIfNil:(BOOL)removeIfNil;
 
 - (void)dejal_setDefaultValue:(id)aDefault forKey:(id)aKey;
 - (void)dejal_setObject:(id)anObject forKey:(id)aKey defaultValue:(id)aDefault;

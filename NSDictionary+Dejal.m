@@ -3,7 +3,7 @@
 //  Dejal Open Source Categories
 //
 //  Created by David Sinclair on Sat Aug 10 2002.
-//  Copyright (c) 2002-2015 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2002-2019 Dejal Systems, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
@@ -240,22 +240,50 @@
  Returns a date from a JSON string, or nil if NSNull or not a valid date.
  
  @author DJS 2012-07.
+ @version DJS 2019-10: changed to just return the value if it is already a date.
 */
 
 - (NSDate *)dejal_dateForKey:(id)key;
 {
-    return [NSDate dejal_dateWithJSONString:[self dejal_nilOrObjectForKey:key] allowPlaceholder:NO];
+    id value = [self dejal_nilOrObjectForKey:key];
+    
+    if ([value isKindOfClass:[NSString class]])
+    {
+        return [NSDate dejal_dateWithJSONString:value allowPlaceholder:NO];
+    }
+    else if ([value isKindOfClass:[NSDate class]])
+    {
+        return value;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 /**
  Returns a time from a JSON string, or nil if NSNull or not a valid time.
  
  @author DJS 2012-07.
+ @version DJS 2019-10: changed to just return the value if it is already a date.
 */
 
 - (NSDate *)dejal_timeForKey:(id)key;
 {
-    return [NSDate dejal_dateWithJSONString:[self dejal_nilOrObjectForKey:key] allowPlaceholder:YES];
+    id value = [self dejal_nilOrObjectForKey:key];
+    
+    if ([value isKindOfClass:[NSString class]])
+    {
+        return [NSDate dejal_dateWithJSONString:value allowPlaceholder:YES];
+    }
+    else if ([value isKindOfClass:[NSDate class]])
+    {
+        return value;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 /**
@@ -410,6 +438,17 @@
 - (void)dejal_setTimeInterval:(NSTimeInterval)value forKey:(id)key
 {
     self[key] = @(value);
+}
+
+/**
+ Sets a JSON-compatibile string representation of a NSDate value in the mutable dictionary with the specified key.
+ 
+ @author DJS 2019-10.
+ */
+
+- (void)dejal_setJSONDate:(NSDate *)value forKey:(id)key removeIfNil:(BOOL)removeIfNil;
+{
+    [self dejal_setObject:value.dejal_JSONStringValue forKey:key removeIfNil:removeIfNil];
 }
 
 /**

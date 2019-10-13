@@ -1320,6 +1320,7 @@
  @version DJS 2004-01: changed to return blank intact.
  @version DJS 2004-06: changed to support the file:// scheme, which would contain a blank url component.
  @version DJS 2007-07: changed to support the localhost domain.
+ @version DJS 2019-10: changed to use "https://", and not add "www.".
 */
 
 - (NSString *)dejal_stringByCleaningURLWithDefaultScheme:(NSString *)scheme;
@@ -1346,10 +1347,12 @@
     }
     
     if (![url containsString:@"."] && ![scheme isEqualToString:@"file://"] && ![url containsString:@"localhost"])
-        url = [NSString stringWithFormat:@"www.%@.com", url];
+        url = [NSString stringWithFormat:@"%@.com", url];
     
     if (!scheme)
-        scheme = @"http://";
+    {
+        scheme = @"https://";
+    }
     
     url = [NSString stringWithFormat:@"%@%@%@", scheme, url, path];
     
