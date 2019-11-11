@@ -28,6 +28,9 @@
 //
 
 
+@import Foundation;
+
+
 @interface NSString (Dejal)
 
 + (NSString *)dejal_stringWithIntegerValue:(NSInteger)value;

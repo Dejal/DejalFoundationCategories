@@ -1249,7 +1249,11 @@
 
 - (NSString *)dejal_stringByAddingPercentEscapes
 {
+    //WARNING: ignoring deprecation; should fix sometime
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)self, NULL, (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ", kCFStringEncodingUTF8);
+#pragma clang diagnostic pop
 }
 
 /**
