@@ -448,6 +448,11 @@
 
 - (void)dejal_setJSONDate:(NSDate *)value forKey:(id)key removeIfNil:(BOOL)removeIfNil;
 {
+    if (value != nil && ![value isKindOfClass:[NSDate class]])
+    {
+        NSLog(@"Detected non-date value: %@; this will crash", value);  // log
+    }
+    
     [self dejal_setObject:value.dejal_JSONStringValue forKey:key removeIfNil:removeIfNil];
 }
 
