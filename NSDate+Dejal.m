@@ -826,10 +826,18 @@
         return defaultValue;
     }
     
+//    #warning hack for Apple Feedback FB8881141
+////    timeInterval = (23 * 60 * 60) + (30 * 60) + 30;
+//    timeInterval = (59 * 60) + 30;
+    
     NSDateComponentsFormatter *formatter = [NSDateComponentsFormatter new];
     
     formatter.unitsStyle = unitsStyle;
     formatter.maximumUnitCount = maximumUnits;
+    
+//    #warning hack for Apple Feedback FB8881141
+//    formatter.unitsStyle = NSDateComponentsFormatterUnitsStyleAbbreviated; // unitsStyle;
+//    formatter.maximumUnitCount = 1; // maximumUnits;
     
     if (keepZero)
     {
@@ -840,7 +848,44 @@
         formatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropAll;
     }
     
-    return [formatter stringFromTimeInterval:timeInterval];
+    NSString *result = [formatter stringFromTimeInterval:timeInterval];
+    
+    // Workaround for bug; Apple Feedback FB8881141:
+    if ([result isEqualToString:@"0d"] && timeInterval < 24 * 60 * 60)
+    {
+        formatter.allowedUnits = NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour;
+        
+        result = [formatter stringFromTimeInterval:timeInterval];
+    }
+    
+//#warning hack for Apple Feedback FB8881141
+////    if ([result isEqualToString:@"0d"])
+////    {
+//        formatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDefault;
+//
+//        NSString *defaultResult = [formatter stringFromTimeInterval:timeInterval];
+//
+//        formatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading | NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle;
+//
+//        NSString *leadingMiddleResult = [formatter stringFromTimeInterval:timeInterval];
+//
+//        formatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing | NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle;
+//
+//        NSString *trailingMiddleResult = [formatter stringFromTimeInterval:timeInterval];
+//
+//        formatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing;
+//
+//        NSString *trailingResult = [formatter stringFromTimeInterval:timeInterval];
+//
+//        formatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle;
+//
+//        NSString *middleResult = [formatter stringFromTimeInterval:timeInterval];
+//
+//        NSLog(@"time interval: %@, drop all: %@, default: %@, leading middle: %@, trailing middle: %@, trailing: %@, middle: %@", @(timeInterval), result, defaultResult, leadingMiddleResult, trailingMiddleResult, trailingResult, middleResult);  // log
+//        NSLog(@"⚠️");  // log
+////    }
+    
+    return result;
 }
 
 /**
