@@ -851,7 +851,7 @@
     NSString *result = [formatter stringFromTimeInterval:timeInterval];
     
     // Workaround for bug; Apple Feedback FB8881141:
-    if ([result isEqualToString:@"0d"] && timeInterval < 24 * 60 * 60)
+    if (([result isEqualToString:@"0d"] || [result isEqualToString:@"0 days"]) && timeInterval < 24 * 60 * 60)
     {
         formatter.allowedUnits = NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour;
         
