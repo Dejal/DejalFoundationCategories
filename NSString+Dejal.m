@@ -91,7 +91,7 @@
 
 + (NSString *)dejal_stringWithIntegerValue:(NSInteger)value
                                 zero:(NSString *)zero
-                            singluar:(NSString *)singular
+                            singular:(NSString *)singular
                               plural:(NSString *)plural;
 {
     if (!value && zero)
@@ -111,7 +111,7 @@
 
 + (NSString *)dejal_stringWithFloatValue:(CGFloat)value
                               zero:(NSString *)zero
-                          singluar:(NSString *)singular
+                          singular:(NSString *)singular
                             plural:(NSString *)plural;
 {
     if (!value && zero)
@@ -150,19 +150,19 @@
     CGFloat years = months / 12.0;
 
     if (years >= 1.0)
-        value = [NSString stringWithFormat:@"%.1f %@", years, [NSString dejal_stringWithFloatValue:years zero:nil singluar:@"year" plural:@"years"]];
+        value = [NSString stringWithFormat:@"%.1f %@", years, [NSString dejal_stringWithFloatValue:years zero:nil singular:@"year" plural:@"years"]];
     else if (months >= 1.0)
-        value = [NSString stringWithFormat:@"%.1f %@", months, [NSString dejal_stringWithFloatValue:months zero:nil singluar:@"month" plural:@"months"]];
+        value = [NSString stringWithFormat:@"%.1f %@", months, [NSString dejal_stringWithFloatValue:months zero:nil singular:@"month" plural:@"months"]];
     else if (weeks >= 1.0)
-        value = [NSString stringWithFormat:@"%.1f %@", weeks, [NSString dejal_stringWithFloatValue:weeks zero:nil singluar:@"week" plural:@"weeks"]];
+        value = [NSString stringWithFormat:@"%.1f %@", weeks, [NSString dejal_stringWithFloatValue:weeks zero:nil singular:@"week" plural:@"weeks"]];
     else if (days >= 1.0)
-        value = [NSString stringWithFormat:@"%.1f %@", days, [NSString dejal_stringWithFloatValue:days zero:nil singluar:@"day" plural:@"days"]];
+        value = [NSString stringWithFormat:@"%.1f %@", days, [NSString dejal_stringWithFloatValue:days zero:nil singular:@"day" plural:@"days"]];
     else if (hours >= 1.0)
-        value = [NSString stringWithFormat:@"%.1f %@", hours, [NSString dejal_stringWithFloatValue:hours zero:nil singluar:@"hour" plural:@"hours"]];
+        value = [NSString stringWithFormat:@"%.1f %@", hours, [NSString dejal_stringWithFloatValue:hours zero:nil singular:@"hour" plural:@"hours"]];
     else if (minutes >= 1.0)
-        value = [NSString stringWithFormat:@"%.1f %@", minutes, [NSString dejal_stringWithFloatValue:minutes zero:nil singluar:@"minute" plural:@"minutes"]];
+        value = [NSString stringWithFormat:@"%.1f %@", minutes, [NSString dejal_stringWithFloatValue:minutes zero:nil singular:@"minute" plural:@"minutes"]];
     else
-        value = [NSString stringWithFormat:@"%.1f %@", seconds, [NSString dejal_stringWithFloatValue:seconds zero:nil singluar:@"second" plural:@"seconds"]];
+        value = [NSString stringWithFormat:@"%.1f %@", seconds, [NSString dejal_stringWithFloatValue:seconds zero:nil singular:@"second" plural:@"seconds"]];
     
     if (suffix.length)
         value = [value stringByAppendingFormat:@" %@", suffix];
@@ -187,19 +187,19 @@
     CGFloat years = months / 12.0;
     
     if (years >= 1.0)
-        value = [NSString stringWithFormat:@"%.0f %@", rintf(years), [NSString dejal_stringWithIntegerValue:rintf(years) zero:nil singluar:@"year" plural:@"years"]];
+        value = [NSString stringWithFormat:@"%.0f %@", rintf(years), [NSString dejal_stringWithIntegerValue:rintf(years) zero:nil singular:@"year" plural:@"years"]];
     else if (months >= 1.0)
-        value = [NSString stringWithFormat:@"%.0f %@", rintf(months), [NSString dejal_stringWithIntegerValue:rintf(months) zero:nil singluar:@"month" plural:@"months"]];
+        value = [NSString stringWithFormat:@"%.0f %@", rintf(months), [NSString dejal_stringWithIntegerValue:rintf(months) zero:nil singular:@"month" plural:@"months"]];
     else if (weeks >= 1.0)
-        value = [NSString stringWithFormat:@"%.0f %@", rintf(weeks), [NSString dejal_stringWithIntegerValue:rintf(weeks) zero:nil singluar:@"week" plural:@"weeks"]];
+        value = [NSString stringWithFormat:@"%.0f %@", rintf(weeks), [NSString dejal_stringWithIntegerValue:rintf(weeks) zero:nil singular:@"week" plural:@"weeks"]];
     else if (days >= 1.0)
-        value = [NSString stringWithFormat:@"%.0f %@", rintf(days), [NSString dejal_stringWithIntegerValue:rintf(days) zero:nil singluar:@"day" plural:@"days"]];
+        value = [NSString stringWithFormat:@"%.0f %@", rintf(days), [NSString dejal_stringWithIntegerValue:rintf(days) zero:nil singular:@"day" plural:@"days"]];
     else if (hours >= 1.0)
-        value = [NSString stringWithFormat:@"%.0f %@", rintf(hours), [NSString dejal_stringWithIntegerValue:rintf(hours) zero:nil singluar:@"hour" plural:@"hours"]];
+        value = [NSString stringWithFormat:@"%.0f %@", rintf(hours), [NSString dejal_stringWithIntegerValue:rintf(hours) zero:nil singular:@"hour" plural:@"hours"]];
     else if (minutes >= 1.0)
-        value = [NSString stringWithFormat:@"%.0f %@", rintf(minutes), [NSString dejal_stringWithIntegerValue:rintf(minutes) zero:nil singluar:@"minute" plural:@"minutes"]];
+        value = [NSString stringWithFormat:@"%.0f %@", rintf(minutes), [NSString dejal_stringWithIntegerValue:rintf(minutes) zero:nil singular:@"minute" plural:@"minutes"]];
     else
-        value = [NSString stringWithFormat:@"%.0f %@", rintf(seconds), [NSString dejal_stringWithIntegerValue:rintf(seconds) zero:nil singluar:@"second" plural:@"seconds"]];
+        value = [NSString stringWithFormat:@"%.0f %@", rintf(seconds), [NSString dejal_stringWithIntegerValue:rintf(seconds) zero:nil singular:@"second" plural:@"seconds"]];
     
     if (suffix.length)
         value = [value stringByAppendingFormat:@" %@", suffix];
@@ -233,16 +233,16 @@
         
 #if TARGET_OS_IPHONE
         minutesString = [self stringWithFormat:@"%ld %@", (long)minutes,
-            [self dejal_stringWithIntegerValue:minutes zero:nil singluar:minuteSingular plural:minutesPlural]];
+            [self dejal_stringWithIntegerValue:minutes zero:nil singular:minuteSingular plural:minutesPlural]];
 #else
         minutesString = [self stringWithFormat:@"%ld %@", minutes,
-                         [self dejal_stringWithIntegerValue:minutes zero:nil singluar:minuteSingular plural:minutesPlural]];
+                         [self dejal_stringWithIntegerValue:minutes zero:nil singular:minuteSingular plural:minutesPlural]];
 #endif
     }
 
     if (wantSeconds)
         secondsString = [self stringWithFormat:NSLocalizedString(@"%ld %@", @"Seconds remaining"), (long)seconds,
-            [self dejal_stringWithIntegerValue:seconds zero:nil singluar:secondSingular plural:secondsPlural]];
+            [self dejal_stringWithIntegerValue:seconds zero:nil singular:secondSingular plural:secondsPlural]];
 
     if (minutes && seconds && wantSeconds && wantMinutes)
         timeString = [NSString stringWithFormat:@"%@ %@", minutesString, secondsString];

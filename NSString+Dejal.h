@@ -37,9 +37,9 @@
 + (NSString *)dejal_stringWithFloatValue:(CGFloat)value places:(NSInteger)places;
 + (NSString *)dejal_stringWithTruncatedFloatValue:(CGFloat)value;
 
-+ (NSString *)dejal_stringWithIntegerValue:(NSInteger)value zero:(NSString *)zero singluar:(NSString *)singular plural:(NSString *)plural;
++ (NSString *)dejal_stringWithIntegerValue:(NSInteger)value zero:(NSString *)zero singular:(NSString *)singular plural:(NSString *)plural;
 
-+ (NSString *)dejal_stringWithFloatValue:(CGFloat)value zero:(NSString *)zero singluar:(NSString *)singular plural:(NSString *)plural;
++ (NSString *)dejal_stringWithFloatValue:(CGFloat)value zero:(NSString *)zero singular:(NSString *)singular plural:(NSString *)plural;
 
 + (NSString *)dejal_stringWithTimeInterval:(NSTimeInterval)seconds;
 + (NSString *)dejal_stringWithTimeInterval:(NSTimeInterval)seconds suffix:(NSString *)suffix;
