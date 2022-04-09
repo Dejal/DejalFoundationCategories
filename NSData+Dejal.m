@@ -41,11 +41,7 @@
 
 + (NSData *)dejal_dataWithObject:(id)rootObject;
 {
-#if TARGET_OS_IPHONE
-    return [NSKeyedArchiver archivedDataWithRootObject:rootObject];
-#else
-    return [NSArchiver archivedDataWithRootObject:rootObject];
-#endif
+    return [NSKeyedArchiver archivedDataWithRootObject:rootObject requiringSecureCoding:YES error:nil];
 }
 
 /**
@@ -57,11 +53,7 @@
 
 - (id)dejal_object;
 {
-#if TARGET_OS_IPHONE
-    return [NSKeyedUnarchiver unarchiveObjectWithData:self];
-#else
-    return [NSUnarchiver unarchiveObjectWithData:self];
-#endif
+    return [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:self error:nil];
 }
 
 @end
