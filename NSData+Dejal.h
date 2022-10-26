@@ -3,7 +3,7 @@
 //  Dejal Open Source Categories
 //
 //  Created by David Sinclair on Fri Jan 02 2004.
-//  Copyright (c) 2004-2015 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2004-2022 Dejal Systems, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
@@ -32,7 +32,7 @@
 
 + (NSData *)dejal_dataWithObject:(id)rootObject;
 
-- (id)dejal_object;
+- (id)dejal_objectOfClass:(Class)class;
 
 @end
 

@@ -3,7 +3,7 @@
 //  Dejal Open Source Categories
 //
 //  Created by David Sinclair on Fri Jan 02 2004.
-//  Copyright (c) 2004-2015 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2004-2022 Dejal Systems, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
@@ -34,9 +34,6 @@
 
 /**
  Returns an archived rendition of the object (which can be any object that conforms to NSCoding, e.g. a dictionary or array with simple Cocoa objects).  Use -object, below, to unarchive the object.  Provided as a convenience, as this functionality seems more logical (to me anyway) as part of NSData.
- 
- @author DJS 2004-01.
- @version DJS 2012-11: changed to use a keyed archiver on iOS; continues to use a non-keyed archiver on Mac, for backwards compatibility.
 */
 
 + (NSData *)dejal_dataWithObject:(id)rootObject;
@@ -46,14 +43,18 @@
 
 /**
  Returns the object rendition of the archived data.  Use this to balance +dataWithObject:, above.  Provided as a convenience, as this functionality seems more logical (to me anyway) as part of NSData.
- 
- @author DJS 2004-01.
- @version DJS 2012-11: changed to use a keyed unarchiver on iOS; continues to use a non-keyed unarchiver on Mac, for backwards compatibility.
 */
 
-- (id)dejal_object;
+- (id)dejal_objectOfClass:(Class)class;
 {
-    return [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:self error:nil];
+    id object = [NSKeyedUnarchiver unarchivedObjectOfClass:class fromData:self error:nil];
+    
+    if (object == nil)
+    {
+        object = [NSUnarchiver unarchiveObjectWithData:self];
+    }
+    
+    return object;
 }
 
 @end
