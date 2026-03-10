@@ -3,7 +3,7 @@
 //  Dejal Open Source Categories
 //
 //  Created by David Sinclair on Fri Jan 02 2004.
-//  Copyright (c) 2004-2022 Dejal Systems, LLC. All rights reserved.
+//  Copyright (c) 2004-2026 Dejal Systems, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification,
 //  are permitted provided that the following conditions are met:
@@ -51,7 +51,11 @@
     
     if (object == nil)
     {
-        object = [NSUnarchiver unarchiveObjectWithData:self];
+        NSKeyedUnarchiver *legacyUnarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:self error:nil];
+
+        legacyUnarchiver.requiresSecureCoding = NO;
+        object = [legacyUnarchiver decodeObjectForKey:NSKeyedArchiveRootObjectKey];
+        [legacyUnarchiver finishDecoding];
     }
     
     return object;
