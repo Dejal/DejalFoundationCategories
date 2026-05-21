@@ -820,8 +820,8 @@
 
 + (NSString *)dejal_relativeStringForTimeInterval:(NSTimeInterval)timeInterval style:(NSDateComponentsFormatterUnitsStyle)unitsStyle maximumUnits:(NSInteger)maximumUnits keepZero:(BOOL)keepZero defaultValue:(NSString *)defaultValue;
 {
-    // If more than 10 years, assume distant past or future:
-    if (fabs(timeInterval) > 60 * 60 * 24 * 365 * 10)
+    // If more than 50 years, assume distant past or future:
+    if (fabs(timeInterval) > 60 * 60 * 24 * 365 * 50)
     {
         return defaultValue;
     }
